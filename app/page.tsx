@@ -3,156 +3,122 @@ const displayPhone = "+1 (917) 679-7021";
 const email = "tahhatariq21@gmail.com";
 const formspreeEndpoint = "https://formspree.io/f/mrewjnkb";
 
-const services = [
-  ["Airport Transportation", "JFK, LGA, EWR, MacArthur airport pickups and drop-offs."],
-  ["Private Rides", "Local rides, appointments, family trips, and long-distance travel."],
-  ["Courier Service", "Same-day document, package, and business deliveries."],
-  ["Business Transportation", "Reliable rides for meetings, clients, hotels, and offices."],
-];
-
-const areas = [
-  "Long Island",
-  "Nassau County",
-  "Suffolk County",
-  "Queens",
-  "Brooklyn",
-  "Manhattan",
-  "Bronx",
-  "JFK Airport",
-  "LaGuardia Airport",
-  "Newark Airport",
-  "MacArthur Airport",
-];
-
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#07111f] text-white">
-      <header className="w-full border-b border-white/10 bg-[#07111f]">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-          <a href="#" className="leading-tight">
-            <div className="text-3xl font-black">H&T</div>
-            <div className="text-xs font-black uppercase tracking-[0.3em] text-blue-400">
-              Transportation
-            </div>
-          </a>
+    <main>
+      <style>{`
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Arial, sans-serif; }
+        main { background: #f5f8fc; color: #08111f; }
+        .nav { background:#06111f; color:white; padding:18px 6%; display:flex; align-items:center; justify-content:space-between; }
+        .logo { font-size:34px; font-weight:900; line-height:1; }
+        .logo span { color:#1473ff; }
+        .sublogo { color:#49a3ff; font-size:12px; font-weight:800; letter-spacing:2px; }
+        .links { display:flex; gap:28px; font-weight:700; font-size:14px; }
+        .links a, .btn, a { color:inherit; text-decoration:none; }
+        .call { background:#0b6bff; padding:13px 22px; border-radius:8px; font-weight:900; }
+        .hero { background:linear-gradient(135deg,#06111f,#082649); color:white; padding:70px 6%; }
+        .hero-wrap { max-width:1200px; margin:auto; display:grid; grid-template-columns:1fr 430px; gap:50px; align-items:center; }
+        .pill { display:inline-block; border:1px solid rgba(255,255,255,.35); border-radius:999px; padding:9px 16px; font-size:12px; font-weight:900; letter-spacing:.8px; }
+        h1 { font-size:56px; line-height:1.05; margin:28px 0 20px; }
+        h1 span, .blue { color:#1681ff; }
+        .hero p { font-size:18px; line-height:1.7; color:#d8e4f2; max-width:650px; }
+        .badges { display:flex; gap:18px; margin:30px 0; flex-wrap:wrap; }
+        .badge { border:1px solid rgba(255,255,255,.18); padding:14px 18px; border-radius:14px; font-weight:800; }
+        .actions { display:flex; gap:16px; flex-wrap:wrap; }
+        .primary { background:#0b6bff; padding:16px 28px; border-radius:9px; font-weight:900; }
+        .secondary { border:1px solid rgba(255,255,255,.45); padding:16px 28px; border-radius:9px; font-weight:900; }
+        .quote { background:rgba(3,13,26,.78); border:1px solid rgba(255,255,255,.18); border-radius:18px; padding:28px; }
+        .quote h2 { margin:0; font-size:30px; color:white; }
+        .quote p { font-size:14px; margin:10px 0 22px; }
+        .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+        input, select, textarea { width:100%; background:#07182b; color:white; border:1px solid rgba(255,255,255,.2); padding:14px; border-radius:8px; margin-bottom:12px; }
+        textarea { min-height:95px; }
+        button { width:100%; background:#0b6bff; color:white; border:0; padding:15px; border-radius:8px; font-weight:900; cursor:pointer; }
+        section { padding:70px 6%; }
+        .center { text-align:center; max-width:1100px; margin:auto; }
+        .section-title { color:#0b6bff; font-size:13px; font-weight:900; letter-spacing:2px; text-transform:uppercase; }
+        h2 { font-size:38px; margin:10px 0 35px; }
+        .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+        .card { background:white; border:1px solid #dbe5f1; border-radius:16px; padding:28px; box-shadow:0 10px 25px rgba(0,0,0,.04); }
+        .card .icon { font-size:40px; margin-bottom:18px; }
+        .card h3 { margin:0 0 12px; }
+        .card p { color:#506175; line-height:1.6; }
+        .dark { background:#06111f; color:white; }
+        .features { display:grid; grid-template-columns:repeat(4,1fr); gap:30px; }
+        .features p { color:#c9d6e6; line-height:1.6; }
+        .areas { display:grid; grid-template-columns:330px 1fr; gap:40px; align-items:center; }
+        .area-list p { margin:12px 0; color:#334155; font-weight:700; }
+        .mapbox { height:320px; border-radius:18px; background:linear-gradient(135deg,#dbeafe,#eff6ff); display:flex; align-items:center; justify-content:center; text-align:center; }
+        .cta { background:#0b6bff; color:white; border-radius:16px; padding:34px; display:flex; justify-content:space-between; align-items:center; gap:20px; }
+        footer { background:#06111f; color:white; padding:45px 6%; }
+        .footer-grid { max-width:1200px; margin:auto; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:30px; }
+        footer p, footer a { color:#c9d6e6; line-height:1.7; }
+        @media(max-width:900px){
+          .hero-wrap, .areas { grid-template-columns:1fr; }
+          .cards, .features, .footer-grid { grid-template-columns:1fr; }
+          .links { display:none; }
+          h1 { font-size:42px; }
+          .grid2 { grid-template-columns:1fr; }
+          .cta { flex-direction:column; text-align:center; }
+        }
+      `}</style>
 
-          <div className="hidden gap-6 text-sm font-bold md:flex">
-            <a href="#services">Services</a>
-            <a href="#quote">Quote</a>
-            <a href="#areas">Areas</a>
-            <a href="#contact">Contact</a>
-          </div>
-
-          <a
-            href={`tel:${phone}`}
-            className="rounded-xl bg-blue-600 px-4 py-3 text-sm font-black"
-          >
-            Call
-          </a>
-        </nav>
+      <header className="nav">
+        <a href="#">
+          <div className="logo">H<span>&</span>T</div>
+          <div className="sublogo">TRANSPORTATION</div>
+        </a>
+        <div className="links">
+          <a href="#services">Services</a>
+          <a href="#quote">Quote</a>
+          <a href="#areas">Areas</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a className="call" href={`tel:${phone}`}>📞 {displayPhone}</a>
       </header>
 
-      <section className="px-5 py-16">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="mx-auto inline-block rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-blue-300">
-            Long Island • NYC • Airports • Courier
-          </p>
+      <section className="hero">
+        <div className="hero-wrap">
+          <div>
+            <div className="pill">AIRPORTS • LOCAL RIDES • COURIER • BUSINESS</div>
+            <h1>Reliable Transportation Across <span>Long Island & NYC</span></h1>
+            <p>On-time airport transfers, private rides, business travel, and same-day courier service you can count on.</p>
 
-          <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-black leading-tight md:text-6xl">
-            Reliable Transportation Across Long Island & NYC
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            Airport transfers, private rides, business transportation, and same-day courier service with dependable timing and professional communication.
-          </p>
-
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <a
-              href="#quote"
-              className="rounded-xl bg-blue-600 px-8 py-4 font-black"
-            >
-              Request a Quote
-            </a>
-            <a
-              href={`tel:${phone}`}
-              className="rounded-xl border border-white/20 px-8 py-4 font-black"
-            >
-              {displayPhone}
-            </a>
-          </div>
-
-          <div className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 font-bold">
-              On-Time Service
+            <div className="badges">
+              <div className="badge">⏱ On Time</div>
+              <div className="badge">🛡 Safe & Reliable</div>
+              <div className="badge">💬 Easy Communication</div>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 font-bold">
-              Clean Rides
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-5 font-bold">
-              Call or Text
+
+            <div className="actions">
+              <a className="primary" href={`tel:${phone}`}>📞 Call Now</a>
+              <a className="secondary" href="#quote">📅 Get a Quote</a>
             </div>
           </div>
-        </div>
 
-        <form
-          id="quote"
-          action={formspreeEndpoint}
-          method="POST"
-          className="mx-auto mt-12 w-full max-w-2xl rounded-3xl border border-white/10 bg-white/10 p-6 shadow-2xl"
-        >
-          <input type="hidden" name="_subject" value="New H&T Transportation Quote Request" />
-          <input type="hidden" name="business" value="H&T Transportation" />
+          <form id="quote" className="quote" action={formspreeEndpoint} method="POST">
+            <input type="hidden" name="_subject" value="New H&T Transportation Quote Request" />
+            <h2>Get a Quote</h2>
+            <p>Fill out the form and we’ll get back to you quickly.</p>
 
-          <h2 className="text-3xl font-black">Get a Quote</h2>
-          <p className="mt-2 text-sm text-slate-300">
-            Send your trip details and we’ll confirm price and availability.
-          </p>
-
-          <div className="mt-6 grid gap-4">
-            <input
-              name="pickup_address"
-              required
-              className="rounded-xl border border-white/10 bg-[#07111f] p-4 text-white outline-none"
-              placeholder="Pickup address"
-            />
-
-            <input
-              name="dropoff_address"
-              required
-              className="rounded-xl border border-white/10 bg-[#07111f] p-4 text-white outline-none"
-              placeholder="Drop-off address"
-            />
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <input
-                name="date"
-                required
-                className="rounded-xl border border-white/10 bg-[#07111f] p-4 text-white outline-none"
-                placeholder="Date"
-              />
-              <input
-                name="time"
-                required
-                className="rounded-xl border border-white/10 bg-[#07111f] p-4 text-white outline-none"
-                placeholder="Time"
-              />
+            <div className="grid2">
+              <input name="pickup_address" placeholder="Pickup Location" required />
+              <input name="dropoff_address" placeholder="Drop-off Location" required />
             </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <select
-                name="service_type"
-                className="rounded-xl border border-white/10 bg-[#07111f] p-4 text-white outline-none"
-              >
-                <option>Airport Transfer</option>
+            <div className="grid2">
+              <input name="date" placeholder="Date" required />
+              <input name="time" placeholder="Time" required />
+            </div>
+            <div className="grid2">
+              <select name="service_type">
+                <option>Airport Transportation</option>
                 <option>Private Ride</option>
                 <option>Courier Service</option>
                 <option>Business Transportation</option>
               </select>
-
-              <select
-                name="passengers"
-                className="rounded-xl border border-white/10 bg-[#07111f] p-4 text-white outline-none"
-              >
+              <select name="passengers">
                 <option>1 Passenger</option>
                 <option>2 Passengers</option>
                 <option>3 Passengers</option>
@@ -160,140 +126,109 @@ export default function Home() {
                 <option>5+ Passengers</option>
               </select>
             </div>
-
-            <input
-              name="customer_name"
-              required
-              className="rounded-xl border border-white/10 bg-[#07111f] p-4 text-white outline-none"
-              placeholder="Your name"
-            />
-
-            <input
-              name="phone_number"
-              required
-              className="rounded-xl border border-white/10 bg-[#07111f] p-4 text-white outline-none"
-              placeholder="Phone number"
-            />
-
-            <input
-              name="email"
-              type="email"
-              className="rounded-xl border border-white/10 bg-[#07111f] p-4 text-white outline-none"
-              placeholder="Email optional"
-            />
-
-            <textarea
-              name="notes"
-              className="min-h-24 rounded-xl border border-white/10 bg-[#07111f] p-4 text-white outline-none"
-              placeholder="Flight number, luggage, or special request"
-            />
-
-            <button
-              type="submit"
-              className="rounded-xl bg-blue-600 p-4 font-black text-white"
-            >
-              Send Quote Request
-            </button>
-          </div>
-        </form>
-      </section>
-
-      <section id="services" className="px-5 py-16">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-center text-xs font-black uppercase tracking-[0.25em] text-blue-400">
-            Services
-          </p>
-          <h2 className="mt-3 text-center text-4xl font-black">
-            How We Can Help
-          </h2>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {services.map(([title, text]) => (
-              <div
-                key={title}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6"
-              >
-                <h3 className="text-xl font-black">{title}</h3>
-                <p className="mt-4 leading-7 text-slate-300">{text}</p>
-              </div>
-            ))}
-          </div>
+            <input name="customer_name" placeholder="Your Name" required />
+            <div className="grid2">
+              <input name="phone_number" placeholder="Phone Number" required />
+              <input name="email" placeholder="Email optional" />
+            </div>
+            <textarea name="notes" placeholder="Additional Notes optional" />
+            <button type="submit">Request Quote</button>
+          </form>
         </div>
       </section>
 
-      <section id="areas" className="bg-[#0b1b30] px-5 py-16">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-center text-xs font-black uppercase tracking-[0.25em] text-blue-400">
-            Service Areas
-          </p>
-          <h2 className="mt-3 text-center text-4xl font-black">
-            Serving Long Island, NYC, and Airports
-          </h2>
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {areas.map((area) => (
-              <div
-                key={area}
-                className="rounded-xl border border-white/10 bg-white/5 p-4 text-center font-bold"
-              >
-                {area}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-16">
-        <div className="mx-auto max-w-6xl rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-blue-400">
-            Why Choose H&T
-          </p>
-          <h2 className="mt-3 text-4xl font-black">Simple, Reliable, Professional</h2>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-4">
+      <section id="services">
+        <div className="center">
+          <div className="section-title">Our Services</div>
+          <h2>How We Can Help You</h2>
+          <div className="cards">
             {[
-              ["On Time", "We respect your schedule."],
-              ["Clean Vehicles", "Comfortable rides for daily trips and airports."],
-              ["Easy Contact", "Call, text, or request online."],
-              ["Fair Pricing", "Clear communication before every trip."],
+              ["✈️", "Airport Transportation", "JFK, LGA, EWR, MacArthur airport pickups and drop-offs."],
+              ["🚘", "Private Rides", "Local rides, appointments, family trips, and long-distance travel."],
+              ["📦", "Courier Service", "Same-day document, package, and business deliveries."],
+              ["💼", "Business Transportation", "Reliable rides for meetings, clients, hotels, and offices."],
+            ].map(([icon, title, text]) => (
+              <div className="card" key={title}>
+                <div className="icon">{icon}</div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="dark">
+        <div className="center">
+          <div className="section-title">Why Choose H&T</div>
+          <h2>Your Ride, Our Priority</h2>
+          <div className="features">
+            {[
+              ["Always On Time", "We respect your time and aim for prompt pickups and drop-offs."],
+              ["Clean & Comfortable", "Well-maintained vehicles for a smooth ride."],
+              ["Easy Communication", "Call or text anytime. We’re here to help."],
+              ["Fair Pricing", "No hidden fees. What we quote is what you pay."],
             ].map(([title, text]) => (
               <div key={title}>
-                <h3 className="font-black text-blue-300">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{text}</p>
+                <h3>{title}</h3>
+                <p>{text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contact" className="bg-[#0b1b30] px-5 py-16">
-        <div className="mx-auto max-w-6xl text-center">
-          <h2 className="text-4xl font-black">Need a Ride?</h2>
-          <p className="mt-3 text-slate-300">
-            Call, text, or request a quote online.
-          </p>
+      <section id="areas">
+        <div className="areas">
+          <div>
+            <div className="section-title">Areas We Serve</div>
+            <h2>Proudly Serving Long Island & NYC</h2>
+            <div className="area-list">
+              {["Long Island", "New York City", "JFK Airport", "LaGuardia Airport", "Newark Airport", "MacArthur Airport"].map((area) => (
+                <p key={area}>🔵 {area}</p>
+              ))}
+            </div>
+          </div>
+          <div className="mapbox">
+            <div>
+              <div style={{ fontSize: 60 }}>📍</div>
+              <h2>Long Island • NYC • Airports</h2>
+              <p>Available for airport rides, local trips, and deliveries.</p>
+            </div>
+          </div>
+        </div>
 
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <a
-              href={`tel:${phone}`}
-              className="rounded-xl bg-blue-600 px-8 py-4 font-black"
-            >
-              Call {displayPhone}
-            </a>
-            <a
-              href={`sms:${phone}`}
-              className="rounded-xl border border-white/20 px-8 py-4 font-black"
-            >
-              Text Us
-            </a>
+        <div id="contact" className="cta" style={{ marginTop: 40 }}>
+          <div>
+            <h2 style={{ margin: 0 }}>Need a Ride?</h2>
+            <p>Call, text, or request a quote. We’re ready to serve you.</p>
+          </div>
+          <div className="actions">
+            <a className="secondary" href={`tel:${phone}`}>📞 {displayPhone}</a>
+            <a className="secondary" href={`sms:${phone}`}>💬 Text Us</a>
           </div>
         </div>
       </section>
 
-      <footer className="px-5 py-8">
-        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-4 border-t border-white/10 pt-6 text-sm text-slate-400 md:flex-row">
-          <p>© 2026 H&T Transportation. All rights reserved.</p>
-          <p>{email}</p>
+      <footer>
+        <div className="footer-grid">
+          <div>
+            <div className="logo">H<span>&</span>T</div>
+            <div className="sublogo">TRANSPORTATION</div>
+            <p>Reliable transportation across Long Island & NYC.</p>
+          </div>
+          <div>
+            <h3>Quick Links</h3>
+            <p>Home<br />Services<br />Areas<br />Contact</p>
+          </div>
+          <div>
+            <h3>Services</h3>
+            <p>Airport Rides<br />Private Rides<br />Courier<br />Business Travel</p>
+          </div>
+          <div>
+            <h3>Contact</h3>
+            <p>{displayPhone}<br />{email}<br />Long Island, NY</p>
+          </div>
         </div>
       </footer>
     </main>
